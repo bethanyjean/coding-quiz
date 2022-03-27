@@ -35,12 +35,6 @@ body{
     color: var(--black);
 }
 
-h1 {
-    text-align: center;
-    color: var(--black);
-    font-weight: bolder;
-}
-
 ol {
     list-style-type: georgian;
 }
@@ -49,16 +43,31 @@ ol {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 100%;
+    width: 50%;
     height: 100px;
     text-align: left;
+    padding: 5%;
 }
 
-.container > h1 {
+h1 {
     color: var(--black);
-    text-align: left;
     font-weight: bolder;
 }
+
+.container > .title {
+    justify-content: center;
+    text-align: center;
+}
+
+.container > .instructions {
+    font-size: medium;
+    text-align: center;
+}
+
+.container> .startBtn {
+    align-items: center;
+}
+
 
 .highScoreList {
     background-color: var(--lghtPurple);
@@ -66,12 +75,15 @@ ol {
 }
 
 button {
+    display: flex;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     margin: 5px;
     width: 100px;
     height: 50px;
     cursor: pointer;
     color: var(--whtie);
     background-color: var(--drkPurple);
+    justify-content: center;
+    align-items: left;
 }

@@ -7,24 +7,24 @@
     <title>Coding Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <header>
         <a href="#" class = "highscore">View High Scores</a>
-        <a class="timer">Time:</a>
+        <a class="timer" id="timer"></a>
     </header>
 
-    <body>
-        <div>
-            <h1>
+    <main>
+        <div class="container" id="welcome">
+            <h1 class="title">
                 Coding Quiz Challenge
             </h1>
-            <p>
-                Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize our score/time by ten seconds!
-            </p>
-            <button id="startQuiz">Start Quiz</button>
+            <a class="instructions">Try to answer the following code-related questions within the time limit. </a>
+            <a class="instructions">Keep in mind that incorrect answers will penalize your score/time by ten seconds!</a> 
+            <button id="startQuiz" onclick="location.href='quiz.html'">Start Quiz</button>
         </div>
-    </body>
+
+    </main>
     
-    <script src="./assets/js/script.js"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@ var timerE1 = document.getElementById('timer');
 var timeLeft = 75;
 var container = document.querySelector(".container");
 var highScore = [];
-var startEl = document.querySelector("#startQuiz");
 var currentScore = 0;
 var questions = {
     0: {
@@ -57,7 +56,7 @@ var questions = {
 
 
 // Create timer that counts down from 75 to 0, after each question time may be subtracted 
-funtion timer() {
+function timer() {
      // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -119,28 +118,23 @@ var createHighScoreEl = function(highScoreDataObj) {
 }
 
 var loadHighScore = function() {
-    var highSore = localStorage.getItem("highScore");
-    if (!highScore) {
+    var savedSore = localStorage.getItem("highScore");
+    if (!savedSore) {
         return false;
     }
     console.log("No High Scores Found");
 
-    highScore = JSON.parse(highSore);
+    highScore = JSON.parse(savedSore);
 
-    for (var i = 0; i < highSore.length; i++) {
-        createHighScoreEl(highSore[i]);
+    for (var i = 0; i < savedScore.length; i++) {
+        createHighScoreEl(savedScore[i]);
     }
 };
-
-var displayWelcome = function() {
-    var QuizEl = document.createElement("div");
-    QuizEl.innerHTML = "<h1 class='title'>Coding Quiz Challenge</h1><a class='instructions'>Try to answer the following code-related questions within the time limit. </a><a class='instructions'>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</a>"
-}
 
 //Display the welcome message and load high scores
 function takeQuiz(){
     loadHighScore();
-    displayWelcome();
+    timer();
 }
 
 // End Game Funtion - Display score and request initials
