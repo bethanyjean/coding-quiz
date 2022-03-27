@@ -5,6 +5,7 @@ var pageContentEl = document.querySelector("#page-content");
 var highScore = [];
 var currentScore = 0;
 var i = 0;
+var answerEvalEl = document.getElementById("answerEval")
 const questions = [
     {
         ask: "Inside which HTML element do we put the JavaScript?",
@@ -82,8 +83,10 @@ var evaluateAnswer = function(event) {
     var targetEl = event.target;
     if (targetEl.value === currentQuestion.correct){
         currentScore = currentScore + 10;
+        answerEvalEl.textContent = "Correct!";
     } else {
         timeLeft = timeLeft - 25;
+        answerEvalEl.textContent = "Wrong!";
     }
     //increase i
     i = i + 1;

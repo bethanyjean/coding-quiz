@@ -9,6 +9,7 @@
     --drkPurple: #33076d;
     --black: #000000;
     --lghtPurple: #b498d3;
+    --grey: #929096;
 }
 
 header {
@@ -97,4 +98,10 @@ button {
     background-color: var(--drkPurple);
     justify-content: center;
     align-items: left;
+}
+
+.answerEval {
+    color: var(--grey);
+    font-style: italic;
+    border-top: 2px solid var(--grey);
 }
