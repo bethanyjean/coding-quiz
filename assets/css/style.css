@@ -89,6 +89,12 @@ h2 {
     color: var(--black);
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     display: flex;
     border-radius: 10px;
