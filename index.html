@@ -10,8 +10,8 @@
 
 <body>
 
-    <header>
-        <a href="#" class = "highscore">View High Scores</a>
+    <header id="header">
+        <a href="javascript:void(0);" onclick="viewHighScore();" class = "highscore">View High Scores</a>
         <h2 class="timer" id="timer"></h2>
     </header>
 
@@ -42,8 +42,13 @@
         <input type="text" name="initials" id="initials"/>
         <button id="submit" value="submit">Submit</button>
         </form>
+    </div>
 
-
+    <div class="highScore hidden" id="highScore">
+        <h1> High Scores</h1>
+        <ol class="highScoreList" id="highScores"></ol>
+        <button id="goBack" value="goBack">Go Back</button>
+        <button id="clearScore" value="clearScore">Clear high Scores</button>
     </div>
 
     <script src="./assets/js/script.js"></script>   

@@ -1,4 +1,10 @@
 var timerEl = document.getElementById('timer');
+var endgameCont = document.getElementById("endgame");
+var Welcome = document.getElementById('welcome');
+var quizList = document.getElementById('quiz');
+var header = document.getElementById('header');
+var highScoreList = document.getElementById('highScore')
+var initialInputValue = document.querySelector("#initials")
 var timeLeft = 75;
 var currentQuestion = [];
 var pageContentEl = document.querySelector("#page-content");
@@ -78,18 +84,36 @@ function timer() {
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
       // Call the `displayMessage()` function
-      endGame();
+      endgame();
     }
   }, 1000);
 }
 
-var evaluateAnswer = function(event) {
+viewHighScore = function() {
+    Welcome.classList.add("hidden");
+    endgameCont.classList.add("hidden");
+    quizList.classList.add("hidden");
+    header.classList.add("hidden");
+    highScoreList.classList.remove("hidden");
+}
+
+var evaluateClick = function(event) {
     var targetEl = event.target;
     if (targetEl.value === "startQuiz"){
         takeQuiz();
     }
     else if (targetEl.value === "submit") {
-        createHighScoreEl();
+        console.log(initialInputValue);
+        score.setAttribute("name", initialInputValue);
+        score.setAttribute("score", currentScore);
+        createHighScoreEl(score);
+        viewHighScore();
+    }
+    else if (targetEl.value === "goBack") {
+        takeQuiz();
+    }
+    else if (targetEl.value === "clearScore") {
+        highScore = [];
     }
     else if (targetEl.value === currentQuestion.correct){
         currentScore = currentScore + 10;
@@ -163,28 +187,30 @@ var loadHighScore = function() {
 
 //Display the welcome message and load high scores
 function takeQuiz(){
-    var addQuiz = document.getElementById('welcome');
-    addQuiz.classList.add("hidden");
-    var quizList = document.getElementById('quiz');
-    quizList.classList.remove("hidden");
-    loadHighScore();
     timer();
-    askQuestion();
+    Welcome.classList.add("hidden");
+    quizList.classList.remove("hidden");
+    highScoreList.classList.add("hidden");
     
+    askQuestion();
+}
+
+function showScores() {
+    highScoreList.classList.remove("hidden");
+    endgameCont.classList.add("hidden");
 }
 
 // End Game Funtion - Display score and request initials
-function endgame() {
-    var removeQuiz = document.getElementById("quiz");
-    var endgameCont = document.getElementById("endgame");
-    removeQuiz.classList.add("hidden");
+function endgame() { 
+    quizList.classList.add("hidden");
     endgameCont.classList.remove("hidden");
     var finalScoreEl = document.getElementById("finalScore");
     finalScoreEl.textContent = "Your final score is: " + currentScore;
     score.user = initials.value.trim();
-    score.user = currentScore;
+    score.score = currentScore;
 }
 
-document.addEventListener("click", evaluateAnswer);
+document.addEventListener("click", evaluateClick);
+loadHighScore();
 
 // takeQuiz();
