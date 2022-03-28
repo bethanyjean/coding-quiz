@@ -3,7 +3,9 @@ var timeLeft = 75;
 var currentQuestion = [];
 var pageContentEl = document.querySelector("#page-content");
 var highScore = [];
+var scoreIdCounter = 0;
 var currentScore = 0;
+var score = {};
 var i = 0;
 var answerEvalEl = document.getElementById("answerEval")
 const questions = [
@@ -62,6 +64,8 @@ const questions = [
 function timer() {
      // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
+    //stop timer at end of questions
+    
     // As long as the `timeLeft` is greater than 1
     if (timeLeft > 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -81,7 +85,13 @@ function timer() {
 
 var evaluateAnswer = function(event) {
     var targetEl = event.target;
-    if (targetEl.value === currentQuestion.correct){
+    if (targetEl.value === "startQuiz"){
+        takeQuiz();
+    }
+    else if (targetEl.value === "submit") {
+        createHighScoreEl();
+    }
+    else if (targetEl.value === currentQuestion.correct){
         currentScore = currentScore + 10;
         answerEvalEl.textContent = "Correct!";
     } else {
@@ -95,7 +105,6 @@ var evaluateAnswer = function(event) {
 
 // Loop through the quiz questions
 function askQuestion() {
-    console.log(currentScore);
     if(i < questions.length) {
         //display question
         
@@ -126,7 +135,7 @@ var createHighScoreEl = function(highScoreDataObj) {
 
     var highScoreInfoEl = document.createElement("div");
     highScoreInfoEl.className = "highScoreList";
-    highScoreInfoEl.innerHTML = "<h2>" + highScoreDataObj.name + "</h2><h2>" + highScoreDataObj.score + "</h2>";
+    highScoreInfoEl.innerHTML = "<h2>" + highScoreDataObj.name + "</h2><span>" + highScoreDataObj.score + "</span>";
     listItemEl.appendChild(highScoreInfoEl);
 
     highScoreDataObj.id = scoreIdCounter;
@@ -134,7 +143,9 @@ var createHighScoreEl = function(highScoreDataObj) {
     highScore.push(highScoreDataObj);
 
     saveHighScore();
-}
+
+    scoreIdCounter++;
+};
 
 var loadHighScore = function() {
     var savedSore = localStorage.getItem("highScore");
@@ -143,15 +154,19 @@ var loadHighScore = function() {
     }
     console.log("No High Scores Found");
 
-    highScore = JSON.parse(savedSore);
+    savedSore = JSON.parse(savedSore);
 
-    for (var i = 0; i < savedScore.length; i++) {
-        createHighScoreEl(savedScore[i]);
+    for (var i = 0; i < savedSore.length; i++) {
+        createHighScoreEl(savedSore[i]);
     }
 };
 
 //Display the welcome message and load high scores
 function takeQuiz(){
+    var addQuiz = document.getElementById('welcome');
+    addQuiz.classList.add("hidden");
+    var quizList = document.getElementById('quiz');
+    quizList.classList.remove("hidden");
     loadHighScore();
     timer();
     askQuestion();
@@ -160,9 +175,16 @@ function takeQuiz(){
 
 // End Game Funtion - Display score and request initials
 function endgame() {
-    console.log("game ended");
+    var removeQuiz = document.getElementById("quiz");
+    var endgameCont = document.getElementById("endgame");
+    removeQuiz.classList.add("hidden");
+    endgameCont.classList.remove("hidden");
+    var finalScoreEl = document.getElementById("finalScore");
+    finalScoreEl.textContent = "Your final score is: " + currentScore;
+    score.user = initials.value.trim();
+    score.user = currentScore;
 }
 
 document.addEventListener("click", evaluateAnswer);
 
-takeQuiz();
+// takeQuiz();

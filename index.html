@@ -9,22 +9,44 @@
 </head>
 
 <body>
+
     <header>
         <a href="#" class = "highscore">View High Scores</a>
-        <a class="timer" id="timer"></a>
+        <h2 class="timer" id="timer"></h2>
     </header>
 
-    <main>
-        <div class="container" id="welcome">
-            <h1 class="title">
-                Coding Quiz Challenge
-            </h1>
-            <a class="instructions">Try to answer the following code-related questions within the time limit. </a>
-            <a class="instructions">Keep in mind that incorrect answers will penalize your score/time by ten seconds!</a> 
-            <button id="startQuiz" onclick="location.href='quiz.html'">Start Quiz</button>
-        </div>
+    <div class="container" id="welcome">
+        <h1 class="title">
+            Coding Quiz Challenge
+        </h1>
+        <a class="instructions">Try to answer the following code-related questions within the time limit. </a>
+        <a class="instructions">Keep in mind that incorrect answers will penalize your score/time by ten seconds!</a> 
+        <button id="startQuiz" value="startQuiz">Start Quiz</button>
+    </div>
 
-    </main>
-    
+
+    <div class="container hidden" id="quiz">
+        <h1 id="ask"></h1>
+        <button id="answer1" value="answer1"></button>
+        <button id="answer2" value="answer2"></button>
+        <button id="answer3" value="answer3"></button>
+        <button id="answer4" value="answer4"></button>
+        <h2 class = 'answerEval' id="answerEval"></h2>
+    </div>
+
+    <div class="container hidden" id="endgame">
+        <h1 id="done">All Done!</h1>
+        <h2 id="finalScore"></h2>
+        <form method="POST">
+        <label>Enter Initials</label>
+        <input type="text" name="initials" id="initials"/>
+        <button id="submit" value="submit">Submit</button>
+        </form>
+
+
+    </div>
+
+    <script src="./assets/js/script.js"></script>   
+
 </body>
 </html>

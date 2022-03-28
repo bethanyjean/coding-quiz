@@ -66,6 +66,10 @@ h1 {
     font-weight: bolder;
 }
 
+h2 {
+    color: var(--black);
+}
+
 .container > .title {
     justify-content: center;
     text-align: center;
@@ -98,6 +102,10 @@ button {
     background-color: var(--drkPurple);
     justify-content: center;
     align-items: left;
+}
+
+.hidden {
+    display: none;
 }
 
 .answerEval {
